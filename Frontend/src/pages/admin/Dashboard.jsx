@@ -43,11 +43,19 @@ const Dashboard = () => {
 
       setStats({
         totalStores: data.length,
-        renewalStores: data.filter((s) => s.isRenewed === true).length,
-        approvalPending: data.filter((s) => s.status === "Pending").length,
-        amountPending: data.filter(
-          (s) => s.paymentStatus === "Pending" || s.paymentStatus === "Partial",
+
+        renewalStores: data.filter(
+          (s) => s.isRenewed === true && s.status === "Active",
         ).length,
+
+        approvalPending: data.filter((s) => s.status === "Pending").length,
+
+        amountPending: data.filter(
+          (s) =>
+            s.status === "Active" &&
+            (s.paymentStatus === "Pending" || s.paymentStatus === "Partial"),
+        ).length,
+
         inactiveStores: data.filter((s) => s.status === "Inactive").length,
       });
     } catch (error) {
@@ -59,7 +67,8 @@ const Dashboard = () => {
     setOpenSection(openSection === section ? null : section);
   };
 
-  // Lists
+  /* -------- STORE LISTS -------- */
+
   const recentStores = [...stores]
     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
     .slice(0, 5);
@@ -68,17 +77,23 @@ const Dashboard = () => {
     .filter((s) => s.status === "Pending")
     .slice(0, 5);
 
-  const renewalStores = stores.filter((s) => s.isRenewed === true).slice(0, 5);
+  const renewalStores = stores
+    .filter((s) => s.isRenewed === true && s.status === "Active")
+    .slice(0, 5);
 
   const pendingPayments = stores
     .filter(
-      (s) => s.paymentStatus === "Pending" || s.paymentStatus === "Partial",
+      (s) =>
+        s.status === "Active" &&
+        (s.paymentStatus === "Pending" || s.paymentStatus === "Partial"),
     )
     .slice(0, 5);
 
   const inactiveStores = stores
     .filter((s) => s.status === "Inactive")
     .slice(0, 5);
+
+  /* -------- DASHBOARD CARDS -------- */
 
   const cards = [
     {
@@ -122,7 +137,8 @@ const Dashboard = () => {
     <div className="min-h-screen p-4 bg-white">
       <h1 className="text-xl font-semibold mb-4 text-blue-900">Dashboard</h1>
 
-      {/* Top Cards */}
+      {/* -------- TOP CARDS -------- */}
+
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
         {cards.map((card, index) => (
           <div
@@ -142,7 +158,8 @@ const Dashboard = () => {
         ))}
       </div>
 
-      {/* Sections */}
+      {/* -------- COLLAPSIBLE SECTIONS -------- */}
+
       <div className="space-y-3">
         {/* Recent Stores */}
         <div className="border border-gray-300 rounded-lg overflow-hidden hover:shadow-lg">

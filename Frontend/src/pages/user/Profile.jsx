@@ -8,7 +8,7 @@ export default function Profile() {
   const firstLetter = username ? username.charAt(0).toUpperCase() : "U";
 
   return (
-    <div className="w-full px-1">
+    <div className="min-h-screen w-full px-1">
       {/* Profile Card */}
       <div className="bg-white rounded-md shadow-xl overflow-hidden">
         {/* Smaller Top Gradient Banner */}

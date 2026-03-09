@@ -91,12 +91,11 @@ export default function ViewStores() {
     }
   };
 
-  if (loading) return <div className="p-6">Loading stores...</div>;
-
   return (
     <div className="flex h-full relative bg-gray-100">
       {/* LEFT SIDE */}
       <div className="w-full">
+        {/* HEADER (Always visible) */}
         <div className="flex justify-between items-center mb-2 sticky top-0 bg-white z-10 p-4 shadow-sm rounded">
           <h2 className="text-xl font-medium text-blue-900">YOUR STORES</h2>
 
@@ -105,7 +104,12 @@ export default function ViewStores() {
           </div>
         </div>
 
-        <StoreTable stores={filteredStores} onView={viewDetail} />
+        {/* TABLE / LOADING */}
+        {loading ? (
+          <div className="p-6 text-gray-500">Loading stores...</div>
+        ) : (
+          <StoreTable stores={filteredStores} onView={viewDetail} />
+        )}
       </div>
 
       {/* RIGHT SIDE PANEL */}
