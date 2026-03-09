@@ -8,7 +8,7 @@ import DashboardLayout from "./layout/DashboardLayout";
 
 // User Pages
 import Profile from "./pages/user/Profile";
-import CreateStore from "./pages/user/createStore";
+import CreateStore from "./pages/user/CreateStore";
 import ViewStores from "./pages/user/ViewStores";
 
 // Admin Pages
