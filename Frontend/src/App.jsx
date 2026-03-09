@@ -7,7 +7,7 @@ import ProtectedRoute from "./routes/ProtectedRoute";
 import DashboardLayout from "./layout/DashboardLayout";
 
 // User Pages
-import Profile from "./pages/user/profile";
+import Profile from "./pages/user/Profile";
 import CreateStore from "./pages/user/createStore";
 import ViewStores from "./pages/user/ViewStores";
 
