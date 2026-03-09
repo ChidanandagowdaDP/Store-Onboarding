@@ -196,7 +196,6 @@ export default function SideStorePanel({ store, open, onClose, refresh }) {
 
       toast.success(res.data.message || "Updated successfully");
 
-      // ⭐ update UI with backend updated store
       if (res.data.store) {
         setStoreData(res.data.store);
       }
@@ -207,6 +206,35 @@ export default function SideStorePanel({ store, open, onClose, refresh }) {
     } catch (error) {
       console.error(error);
       toast.error(error?.response?.data?.message || "Update failed");
+    }
+  };
+
+  const deactivateStore = async () => {
+    try {
+      const confirmDeactivate = window.confirm(
+        "Are you sure you want to deactivate this store?",
+      );
+
+      if (!confirmDeactivate) return;
+
+      const res = await axios.patch(
+        `${BACKEND_URL}/api/store/updatestore/${storeData._id}`,
+        { status: "Inactive" },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        },
+      );
+
+      toast.success(res.data.message || "Store deactivated");
+
+      if (res.data.store) {
+        setStoreData(res.data.store);
+      }
+
+      if (refresh) refresh();
+    } catch (error) {
+      console.error(error);
+      toast.error(error?.response?.data?.message || "Failed to deactivate");
     }
   };
 
@@ -322,6 +350,18 @@ export default function SideStorePanel({ store, open, onClose, refresh }) {
         <div className="grid grid-cols-2 gap-3">
           {tabs[activeTab].fields.map((key) => renderField(key))}
         </div>
+      </div>
+
+      {/* Deactivate Button */}
+      <div className=" border-gray-300 p-4">
+        {storeData?.status !== "Inactive" && (
+          <button
+            onClick={deactivateStore}
+            className="w-fit p-2 bg-red-600 hover:bg-red-700 text-white py-2 rounded-md text-sm font-medium transition"
+          >
+            Deactivate Store
+          </button>
+        )}
       </div>
     </div>
   );

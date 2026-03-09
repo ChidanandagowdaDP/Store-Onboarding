@@ -42,6 +42,7 @@ const CreateStore = () => {
           },
         },
       );
+
       setModalVisible(true);
       setFormData({});
     } catch (error) {
@@ -50,7 +51,7 @@ const CreateStore = () => {
   };
 
   return (
-    <div className=" min-h-screen ">
+    <div className="min-h-screen w-full ">
       <SuccessModal
         visible={modalVisible}
         title="Store Created 🎉"
@@ -58,7 +59,7 @@ const CreateStore = () => {
       />
 
       {/* MAIN CONTAINER */}
-      <div className="max-w-6xl mx-auto bg-white shadow-sm border border-gray-200 rounded-lg p-4">
+      <div className="w-full bg-white shadow-sm border border-gray-200 rounded-lg p-4">
         {/* HEADER */}
         <h2 className="text-lg font-semibold text-blue-900 mb-3">
           Create Store

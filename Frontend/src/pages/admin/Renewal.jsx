@@ -138,7 +138,7 @@ export default function RenewalStores() {
                 <div className="flex-[1] flex justify-center">
                   <button
                     onClick={() => openStorePanel(store)}
-                    className="px-3 py-1 bg-blue-900 text-white rounded text-xs hover:bg-blue-800"
+                    className="px-3 py-2 bg-blue-900 text-white rounded text-xs hover:bg-blue-800"
                   >
                     Update
                   </button>
@@ -294,7 +294,7 @@ export default function RenewalStores() {
               <div className="flex justify-center pt-2">
                 <button
                   onClick={handleRenewNow}
-                  className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition"
+                  className="px-6 py-2 bg-blue-900 text-white rounded-md hover:bg-green-700 transition"
                 >
                   Renew Now
                 </button>

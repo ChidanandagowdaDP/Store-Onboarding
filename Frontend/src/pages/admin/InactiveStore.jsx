@@ -185,6 +185,11 @@ export default function InactiveStores() {
                     value={selectedStore.storeName}
                     readOnly
                   />
+                  <InputField
+                    label="Store Address"
+                    value={selectedStore.address}
+                    readOnly
+                  />
 
                   <InputField
                     label="Owner Name"
@@ -193,14 +198,20 @@ export default function InactiveStores() {
                   />
 
                   <InputField
-                    label="Phone"
-                    value={selectedStore.phone}
+                    label=" Owner Contact"
+                    value={selectedStore.ownerMobile}
                     readOnly
                   />
 
                   <InputField
-                    label="Address"
-                    value={selectedStore.address}
+                    label="Cashier Name"
+                    value={selectedStore.cashierName}
+                    readOnly
+                  />
+
+                  <InputField
+                    label=" Cashier Contact"
+                    value={selectedStore.cashierMobile}
                     readOnly
                   />
 
@@ -216,7 +227,7 @@ export default function InactiveStores() {
               <div className="flex justify-center pt-2">
                 <button
                   onClick={handleReactivate}
-                  className="px-6 py-2  bg-green-600 text-white rounded-lg hover:bg-green-700 transition"
+                  className="px-6 py-2  bg-blue-900 text-white rounded-md hover:bg-green-700 transition"
                 >
                   Reactivate Store
                 </button>

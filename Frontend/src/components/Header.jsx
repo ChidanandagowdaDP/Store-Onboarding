@@ -182,7 +182,7 @@ export default function Header() {
 
               <button
                 onClick={handleChangePassword}
-                className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700"
+                className="px-3 py-1 bg-blue-900 text-white rounded hover:bg-blue-800"
               >
                 Update
               </button>

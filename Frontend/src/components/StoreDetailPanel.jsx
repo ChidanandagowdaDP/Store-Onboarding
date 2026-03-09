@@ -199,7 +199,7 @@ export default function StoreDetailPanel({
 
               <button
                 onClick={activateStore}
-                className="mt-2 w-full flex items-center justify-center gap-2 bg-green-600 text-white py-2 rounded hover:bg-green-700 text-sm"
+                className="mt-2 w-full flex items-center justify-center gap-2 bg-blue-900 text-white py-2 rounded hover:bg-green-700 text-sm"
               >
                 <CheckCircle size={16} />
                 Activate Store
@@ -213,7 +213,7 @@ export default function StoreDetailPanel({
             typeof onDelete === "function" && (
               <div className="pt-2 flex justify-end">
                 <button
-                  className="px-3 py-1.5 bg-red-500 text-white rounded text-xs flex items-center gap-1 hover:bg-red-600 transition"
+                  className="px-5 py-1.5 bg-red-500 text-white rounded text-xs flex items-center gap-1 hover:bg-red-600 transition"
                   onClick={() => onDelete(store)}
                 >
                   <Trash2 size={14} />
