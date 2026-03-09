@@ -31,48 +31,39 @@ export default function Profile() {
           </div>
 
           {/* Divider */}
-          <div className="my-2 border-t border-gray-300"></div>
+          <div className="my-2 border-t  border-gray-300"></div>
 
           {/* Details */}
-          <div className="grid md:grid-cols-2 gap-6 text-left max-w-xl mx-auto">
-            <div className="flex items-center gap-3">
-              <UserCircle size={18} className="text-blue-900" />
-              <div>
-                <p className="text-sm text-gray-500">Username</p>
-                <p className="font-medium text-gray-800">{username}</p>
-              </div>
+          <div className="grid md:grid-cols-2 gap-6 text-center max-w-xl mx-auto">
+            <div className="flex flex-col items-center">
+              <UserCircle size={22} className="text-blue-900 mb-1" />
+              <p className="text-sm text-gray-500">Username</p>
+              <p className="font-medium text-gray-800">{username}</p>
             </div>
 
-            <div className="flex items-center gap-3">
-              <Shield size={18} className="text-blue-900" />
-              <div>
-                <p className="text-sm text-gray-500">Role</p>
-                <p className="font-medium text-gray-800">{role}</p>
-              </div>
+            <div className="flex flex-col items-center">
+              <Shield size={22} className="text-blue-900 mb-1" />
+              <p className="text-sm text-gray-500">Role</p>
+              <p className="font-medium text-gray-800">{role}</p>
             </div>
 
-            <div className="flex items-center gap-3">
-              <Calendar size={18} className="text-blue-900" />
-              <div>
-                <p className="text-sm text-gray-500">Member Since</p>
-                <p className="font-medium text-gray-800">2025</p>
-              </div>
+            <div className="flex flex-col items-center">
+              <Calendar size={22} className="text-blue-900 mb-1" />
+              <p className="text-sm text-gray-500">Session</p>
+              <p className="font-medium text-gray-800">Active Now</p>
             </div>
 
-            <div className="flex items-center gap-3">
-              <Activity size={18} className="text-green-600" />
-              <div>
-                <p className="text-sm text-gray-500">Account Status</p>
-                <p className="font-medium text-green-600">Active</p>
-              </div>
+            <div className="flex flex-col items-center">
+              <Activity size={22} className="text-green-600 mb-1" />
+              <p className="text-sm text-gray-500">Account Status</p>
+              <p className="font-medium text-green-600">Active</p>
             </div>
           </div>
-
           {/* Divider */}
           <div className="my-8 border-t border-gray-300"></div>
 
           {/* Motivational Section */}
-          <div className="text-gray-600 text-sm space-y-2">
+          <div className="text-gray-600 text-md space-y-2">
             <p>🚀 Stay consistent and keep improving every day.</p>
             <p>💡 Small progress today leads to big achievements tomorrow.</p>
             <p>🔥 Your dedication is building something great.</p>
