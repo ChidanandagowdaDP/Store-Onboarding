@@ -144,7 +144,7 @@ const Dashboard = () => {
           <div
             key={index}
             onClick={() => navigate(card.path)}
-            className="bg-white border border-gray-300 rounded-lg p-3 flex items-center justify-between shadow-md cursor-pointer hover:shadow-lg transition"
+            className="bg-white border border-gray-300 rounded-lg px-3 py-5 flex items-center justify-between shadow-md cursor-pointer hover:shadow-lg transition"
           >
             <div>
               <p className="text-sm text-gray-500">{card.title}</p>
