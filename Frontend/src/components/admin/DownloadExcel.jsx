@@ -1,41 +1,52 @@
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
+import { toast } from "react-toastify";
 
 export default function DownloadExcel({ data }) {
   const downloadExcel = () => {
-    if (!data || data.length === 0) return;
+    // Show error if no data
+    if (!data || data.length === 0) {
+      toast.error("No store data available to download");
+      return;
+    }
 
     const formattedData = data.map((store) => ({
-      "Group Name": store.groupName,
-      "Store Name": store.storeName,
-      "Store Type": store.storeType,
-      District: store.district,
-      Address: store.address,
-      Pincode: store.pincode,
-      "Geo Address": store.geoAddress,
-      "Go Live Date": new Date(store.goLiveDate).toLocaleDateString("en-IN"),
-      "Renewal Date": new Date(store.renewalDate).toLocaleDateString("en-IN"),
+      "Group Name": store.groupName || "",
+      "Store Name": store.storeName || "",
+      "Store Type": store.storeType || "",
+      District: store.district || "",
+      Address: store.address || "",
+      Pincode: store.pincode || "",
+      "Geo Address": store.geoAddress || "",
 
-      "KSBCL ID": store.ksbclId,
-      "KSBCL Password": store.ksbclPassword,
+      "Go Live Date": store.goLiveDate
+        ? new Date(store.goLiveDate).toLocaleDateString("en-IN")
+        : "",
 
-      "Lane Available": store.laneAvailable,
-      "Name Of Lane": store.nameOfLane,
+      "Renewal Date": store.renewalDate
+        ? new Date(store.renewalDate).toLocaleDateString("en-IN")
+        : "",
 
-      "Owner Name": store.ownerName,
-      "Owner Mobile": store.ownerMobile,
-      "Owner Email": store.ownerEmail,
+      "KSBCL ID": store.ksbclId || "",
+      "KSBCL Password": store.ksbclPassword || "",
 
-      "Cashier Name": store.cashierName,
-      "Cashier Mobile": store.cashierMobile,
+      "Lane Available": store.laneAvailable || "",
+      "Name Of Lane": store.nameOfLane || "",
 
-      "1 Year Charges": store.oneYearCharges,
-      "Renewal Amount": store.renewalAmount,
+      "Owner Name": store.ownerName || "",
+      "Owner Mobile": store.ownerMobile || "",
+      "Owner Email": store.ownerEmail || "",
 
-      "System Required": store.systemRequired,
-      "System Amount": store.systemAmount,
+      "Cashier Name": store.cashierName || "",
+      "Cashier Mobile": store.cashierMobile || "",
 
-      Status: store.status,
+      "1 Year Charges": store.oneYearCharges || "",
+      "Renewal Amount": store.renewalAmount || "",
+
+      "System Required": store.systemRequired || "",
+      "System Amount": store.systemAmount || "",
+
+      Status: store.status || "",
       "Onboarded By": store.onboardedBy?.username || "",
     }));
 
