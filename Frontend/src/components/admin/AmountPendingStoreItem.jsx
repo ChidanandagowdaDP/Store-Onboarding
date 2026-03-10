@@ -35,7 +35,7 @@ export default function AmountPendingStoreItem({ store, onUpdate }) {
         <div className="flex-[1] text-center">
           <button
             onClick={() => onUpdate(store)}
-            className="px-3 py-1.5 text-xs bg-blue-900 text-white rounded hover:bg-blue-800 transition"
+            className="px-3 py-2 text-xs bg-blue-900 text-white rounded hover:bg-blue-800 transition"
           >
             Update
           </button>

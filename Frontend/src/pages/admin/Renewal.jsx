@@ -9,11 +9,7 @@ import { toast } from "react-toastify";
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const formatDateTime = (isoString) =>
-  isoString
-    ? new Date(isoString).toLocaleDateString() +
-      " " +
-      new Date(isoString).toLocaleTimeString()
-    : "N/A";
+  isoString ? new Date(isoString).toLocaleDateString("en-GB") : "N/A";
 
 export default function RenewalStores() {
   const [stores, setStores] = useState([]);

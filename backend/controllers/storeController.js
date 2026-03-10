@@ -22,6 +22,7 @@ export const getStores = async (req, res) => {
     const { status, paymentStatus, renewal } = req.query;
 
     let filter = {};
+    let sortOption = { createdAt: -1 }; // default: latest stores first
 
     // 🔹 Filter by store status
     if (status) {
@@ -30,25 +31,28 @@ export const getStores = async (req, res) => {
 
     // 🔹 Filter by payment status
     if (paymentStatus) {
-      // Split by comma and use $in for multiple statuses
       const statuses = paymentStatus.split(",").map((s) => s.trim());
       filter.paymentStatus = { $in: statuses };
     }
 
-    // 🔹 Renewal within next 2 months + expired
+    // 🔹 Renewal filter
     if (renewal === "true") {
       const today = new Date();
       const nextTwoMonths = new Date();
       nextTwoMonths.setMonth(today.getMonth() + 2);
 
       filter.renewalDate = {
-        $lte: nextTwoMonths, // include expired + upcoming 2 months
+        $lte: nextTwoMonths,
       };
+
+      // sort by nearest renewal
+      sortOption = { renewalDate: 1 };
     }
 
     const stores = await Store.find(filter)
       .populate("onboardedBy", "username role")
-      .sort({ renewalDate: 1 }); // soonest renewal first
+      .sort(sortOption)
+      .lean();
 
     res.status(200).json({ stores });
   } catch (error) {
