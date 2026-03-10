@@ -354,14 +354,15 @@ export default function SideStorePanel({ store, open, onClose, refresh }) {
 
       {/* Deactivate Button */}
       <div className=" border-gray-300 p-4">
-        {storeData?.status !== "Inactive" && (
-          <button
-            onClick={deactivateStore}
-            className="w-fit p-2 bg-red-600 hover:bg-red-700 text-white py-2 rounded-md text-sm font-medium transition"
-          >
-            Deactivate Store
-          </button>
-        )}
+        {storeData?.status !== "Inactive" &&
+          storeData?.status !== "Pending" && (
+            <button
+              onClick={deactivateStore}
+              className="w-fit p-2 bg-red-600 hover:bg-red-700 text-white py-2 rounded-md text-sm font-medium transition"
+            >
+              Deactivate Store
+            </button>
+          )}
       </div>
     </div>
   );

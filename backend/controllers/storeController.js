@@ -255,7 +255,7 @@ export const deleteStore = async (req, res) => {
 
 export const updatePayment = async (req, res) => {
   try {
-    const { receivedAmount, updatedBy } = req.body;
+    const { receivedAmount, updatedBy, note } = req.body;
 
     if (!receivedAmount || receivedAmount <= 0) {
       return res.status(400).json({ message: "Invalid payment amount" });

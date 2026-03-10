@@ -62,6 +62,7 @@ const storeSchema = new mongoose.Schema(
       {
         updatedBy: { type: String, required: true },
         date: { type: Date, default: Date.now },
+        note: String,
       },
     ],
   },

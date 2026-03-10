@@ -15,6 +15,7 @@ export default function AmountPending() {
   const [selectedStore, setSelectedStore] = useState(null);
   const [panelOpen, setPanelOpen] = useState(false);
   const [payAmount, setPayAmount] = useState("");
+  const [note, setNote] = useState(""); // ✅ NEW STATE
 
   const token = Cookies.get("token");
 
@@ -41,8 +42,8 @@ export default function AmountPending() {
   const openStorePanel = (store) => {
     setSelectedStore(store);
     setPayAmount("");
+    setNote(""); // reset note
 
-    // Delay to allow initial render before transition
     setTimeout(() => {
       setPanelOpen(true);
     }, 10);
@@ -51,7 +52,6 @@ export default function AmountPending() {
   const closePanel = () => {
     setPanelOpen(false);
 
-    // wait until animation completes
     setTimeout(() => {
       setSelectedStore(null);
     }, 500);
@@ -71,6 +71,7 @@ export default function AmountPending() {
         {
           receivedAmount: Number(payAmount),
           updatedBy: username,
+          note: note,
         },
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -82,6 +83,7 @@ export default function AmountPending() {
       closePanel();
       fetchStores();
       setPayAmount("");
+      setNote("");
     } catch (err) {
       console.error(err);
       const message = err.response?.data?.message || "Payment update failed";
@@ -106,7 +108,6 @@ export default function AmountPending() {
 
       {/* STORE LIST */}
       <div className="flex-1 overflow-y-auto p-2 space-y-2 bg-white rounded-md">
-        {/* HEADER ROW */}
         <div className="border border-gray-300 p-3 mb-1 rounded-md text-sm flex items-center font-semibold text-gray-700 w-full">
           <div className="flex-[3]">Store Name</div>
           <div className="flex-[2] text-center">Onboarded By</div>
@@ -134,7 +135,7 @@ export default function AmountPending() {
         <>
           {/* BACKDROP */}
           <div
-            className={`fixed  duration-500 z-40 ${
+            className={`fixed duration-500 z-40 ${
               panelOpen ? "opacity-100" : "opacity-0 pointer-events-none"
             }`}
             onClick={closePanel}
@@ -191,6 +192,7 @@ export default function AmountPending() {
                 </div>
               </FormSection>
 
+              {/* UPDATE PAYMENT */}
               <FormSection title="Update Payment">
                 <InputField
                   label="Enter Paid Amount"
@@ -199,12 +201,26 @@ export default function AmountPending() {
                   onChange={(e) => setPayAmount(e.target.value)}
                   placeholder="Enter amount"
                 />
+
+                {/* NOTE FIELD */}
+                <div className="flex flex-col gap-1">
+                  <label className="text-sm font-medium text-gray-700">
+                    Note
+                  </label>
+                  <textarea
+                    value={note}
+                    onChange={(e) => setNote(e.target.value)}
+                    placeholder="Enter payment note..."
+                    rows={3}
+                    className="border border-gray-300 rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-900 resize-none"
+                  />
+                </div>
               </FormSection>
 
               <div className="flex justify-center">
                 <button
                   onClick={handlePaymentUpdate}
-                  className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition"
+                  className="px-6 py-2 bg-blue-900 text-white rounded-lg hover:bg-green-700 transition"
                 >
                   Update Payment
                 </button>

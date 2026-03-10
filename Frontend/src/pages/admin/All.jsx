@@ -80,7 +80,7 @@ export default function All() {
           <StoreItem key={store._id} store={store}>
             <button
               onClick={() => openPanel(store)}
-              className="px-3 py-1 text-xs bg-blue-900 text-white rounded hover:bg-blue-800"
+              className="px-3 py-1.5 text-xs bg-blue-900 text-white rounded hover:bg-blue-800"
             >
               View
             </button>
